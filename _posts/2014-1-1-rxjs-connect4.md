@@ -1,3 +1,15 @@
+---
+layout: post
+title:  "RxJS - Connect4"
+date:   2014-1-1 10:35:01
+categories: jekyll update
+---
+
+RxJS - Connect4
+---------------
+
+{% include rxjs-connect4/rxjs-connect4.html %}
+
 ### Rx
 RxJS is a library to aid in reactive functional programming.  To learn more about Rx and functional programming checkout this blog post.
 
