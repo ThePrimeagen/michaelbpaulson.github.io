@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "RxJS - Connect4"
+date:   2014-1-1 10:35:01
+categories: jekyll update
+---
+<link rel="stylesheet" href="/assets/rxjs-connect4/static/style.css">
+
+{% markdown rxjs-connect4/connect4_title.md %}
+
+<div style="width:100%;height:500px;position:relative">
+    <div id="game"></div>
+</div>
+<br/>
+
+{% markdown rxjs-connect4/explanation.md %}
+
+<script type="application/javascript" src="/assets/rxjs-connect4/static/dist/main.js"></script>
+<script type="application/javascript">
+    var $ = require('jquery');
+    $(function() {
+        var RxConnect4 = require('RxConnect4');
+        var rxConnect4 = new RxConnect4($('#game'));
+        rxConnect4.start();
+    });
+</script>
