@@ -20,6 +20,12 @@ RxJS is a library to aid in reactive functional programming.  To learn more abou
 The program treats key events as program logic control.  So everytime a key is pressed (left, right, or enter) the world state
 is updated and notifies other observers.
 
+{% highlight javascript %}
+function() {
+    // test
+}
+{% endhighlight %}
+
 ### Furthur Work
 I am going to try rewriting the program with a different async library.
 
