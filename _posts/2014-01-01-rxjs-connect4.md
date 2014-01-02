@@ -1,6 +1,9 @@
 ---
-layout: page
-title: Michael Brady Paulson | RxJS | connect4
+layout: post
+title: Building Connect4 with RxJS
+categories: rx
+date: 2014-01-01 10:35:01
+image: my_image.png
 ---
 
 RxJS - Connect4
