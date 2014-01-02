@@ -1,13 +1,18 @@
 ---
 layout: default
-title: Michael Brady Paulson | Primeagen
+title: Primeagen | Michael Brady Paulson
 ---
 
-<div id="home">
-  <h1>Blog Posts</h1>
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
+<div id="Home">
+    <h1>Welcome</h1>
+    <ul class="posts cf">
+        {% for category in site.data.categories %}
+            <li class="post-container">
+                <a class="image" href="{{ category.url }}"><img src="/assets/images/{{ category.image }}"></a>
+                <div class="title">
+                    <a href="{{ category.url }}">{{ category.title }}</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 </div>

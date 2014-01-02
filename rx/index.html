@@ -5,11 +5,15 @@ title: Michael Brady Paulson | Rx
 
 <div id="rx">
     <h1>Rx</h1>
-    <ul class="posts">
+    <ul class="posts cf">
         {% for post in site.posts %}
             {% if post.categories contains 'rx' %}
-                {{ post.image }}
-                <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+                <li class="post-container">
+                    <a class="image" href="{{ post.url }}"><img src="/assets/images/{{ post.image }}"></a>
+                    <div class="title">
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                    </div>
+                </li>
             {% endif %}
         {% endfor %}
     </ul>

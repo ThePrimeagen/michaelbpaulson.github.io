@@ -3,13 +3,15 @@ layout: post
 title: Building Connect4 with RxJS
 categories: rx
 date: 2014-01-01 10:35:01
-image: my_image.png
+image: rxjs-connect4.png
+repo-url: http://github.com/primeagen/rxjs-connect4
 ---
 
 RxJS - Connect4
 ---------------
+Use arrow keys + enter to play
 
-{% include rxjs-connect4/rxjs-connect4.html %}
+{% include rxjs/connect4/game.html %}
 
 ### Rx
 RxJS is a library to aid in reactive functional programming.  To learn more about Rx and functional programming checkout this blog post.
