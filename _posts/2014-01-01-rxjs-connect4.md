@@ -29,21 +29,21 @@ consists of listening to the left and right of the keyboard and the enter key.  
 function gameLoop() {
     // The graph is the board.  Every node has 4 neighbors.  The edge nodes neighbors are just self references
     var graph = Graph({rows: 11, columns: 15});
-    
+
     // Returns 2 observables in an array [enterActionObservable, directionActionObservable]
     var keyboardObs = [enterObs, dirObs];
-    var gameObservable = Rx.Observable.merge(keyboardObs); 
-    
+    var gameObservable = Rx.Observable.merge(keyboardObs);
+
     // isThereWinner: Its inefficient.  just deal with it.  I know i could test only the newly selected node.
     var gameHasBeenWonObs = GameLogic.isThereWinner(graph, gameObservable[0]);
-    
+
     // When game has been won, play animation then restart.
     gameHasBeenWonObs.subscribe(function(winningNodes) {
         playAnimations().subscribe(NOOP, NOOP, function() {
             gameLoop();
         });
     });
-    
+
     // Subscribe to gameObservable and take until winner
     Rx.Observable.merge(gameObservable)
         .takeUntil(gameHasBeenWonObs)O
@@ -52,7 +52,7 @@ function gameLoop() {
 {% endhighlight %}
 ---
 
-Actual source code [here](https://github.com/primeagen/rxjs-connect4/blob/master/js/RxConnect4.js)
+Actual source code [here](https://github.com/primeagen/rxjs-connect4)
 
 ### Notes
 The above code is very pseudo.  The actual code is slightly more complex :)
