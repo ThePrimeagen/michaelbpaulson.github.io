@@ -55,5 +55,3 @@ module.exports = function(grunt) {
 }
 {% endhighlight %}
 ---
-
-[JS/Pipe](http://jspipe.org/)
