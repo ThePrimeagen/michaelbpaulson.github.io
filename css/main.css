@@ -62,8 +62,8 @@ a:visited { color: #a0a; }
 
 .posts .post-container {
     position: relative;
-    height: 273px;
-    width: 273px;
+    height: 136px;
+    width: 136px;
     float: left;
 }
 
@@ -71,14 +71,14 @@ a:visited { color: #a0a; }
     position: absolute;
     left: 0;
     border: 1px solid #ddd !important;
-    height: 256px;
+    height: 128px;
 }
 
 .posts .post-container .title {
     position: absolute;
-    top: 260px;
+    top: 130px;
     height: 15px;
-    width: 258px;
+    width: 129px;
     text-align: center;
 }
 
