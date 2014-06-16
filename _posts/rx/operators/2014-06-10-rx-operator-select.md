@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Select - RxJS
+title: select - RxJS
 categories: rx,rxoperators
 date: 2014-06-10 10:35:01
 image: rx128.png
@@ -8,10 +8,9 @@ image: rx128.png
 
 ### Understanding Select
 
-`select` is one of the most used operators in Rx.
+`select` is one of the most used operators in Rx and probably the easiest to grasp.
 Its intended purpose is to transform a value.
 It is also known as `map`
-
 
 Examples with arrays
 =======================
@@ -22,7 +21,6 @@ var a2 = a1.map(function(val) { return val + 1; });
 console.log('a1: ' + a1); // [1, 3, 5]
 console.log('a2: ' + a2); // [2, 4, 6]
 {% endhighlight %}
---------------------------
 
 `map` and `select` act in the same way, except for with Rx, we assume its async.
 
@@ -46,7 +44,8 @@ a2.subscribe(function(x) {
     console.log(x);
 });
 {% endhighlight %}
---------------------------
+
+*Note*:  Subscribe would be invoked 3 times.
 
 
 Going deeper.
@@ -74,5 +73,44 @@ observableProto.select = observableProto.map = function (selector, thisArg) {
     });
 };
 {% endhighlight %}
------------------------
+
+Notice how select works.  The select command `subscribe`s to the `parent` (current Observable at the time of select)
+and passes the `value` through the provided `selector`.
+The selector is the function that is provided in the `select` command.
+
+Watch out!
+====================
+Re-look at the source, specifically the following line.
+{% highlight javascript %}
+return parent.subscribe(function (value) { ... }
+{% endhighlight %}
+
+Notice that the `subscribe` call is made immediately when the result of the `select` call is subscribed to.
+So image the following situation.
+
+{% highlight javascript %}
+var obs = Rx.Observable.returnValue(1);
+for (var i = 0; i < 100000; i++) {
+    obs = obs.select(function(x) {
+        return x + 1;
+    });
+}
+
+obs.subscribe(function() {
+    console.log('I am so awesome!');
+}, function(err) {
+    console.log('Error: ' + err);
+}, NOOP);
+{% endhighlight %}
+
+What is going to happen?  Stack Overflow!!!  Its all about the `parent.subscribe` statement.  As the first subscribe happens, each
+parent will be subscribed to all the way up to the original observable (`returnValue(1)`).  Which will generate a 100,000 stack frames.  Don't do this.
+
+
+What if?
+======================
+Something to think about of which will be addressed later is what if a select statement returns an observable?
+All the sudden you now have an Observable of Observables.
+
+![Mind Blown]({{ site.url }}/assets/images/mindblow.gif)
 
