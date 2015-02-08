@@ -82,6 +82,28 @@ a:visited { color: #a0a; }
     text-align: center;
 }
 
+.posts .category-container {
+    position: relative;
+    height: 262px;
+    width: 262px;
+    float: left;
+}
+
+.posts .category-container .image {
+    position: absolute;
+    left: 0;
+    border: 1px solid #ddd !important;
+    height: 256px;
+}
+
+.posts .category-container .title {
+    position: absolute;
+    top: 260px;
+    height: 15px;
+    width: 256px;
+    text-align: center;
+}
+
 /*****************************************************************************/
 /*
 /* Site
@@ -103,7 +125,6 @@ a:visited { color: #a0a; }
 
 .title {
   display: inline-block;
-  margin-bottom: 2em;
 }
 
 .title a {
@@ -121,6 +142,16 @@ a:visited { color: #a0a; }
 
 .header a.extra:hover {
   color: #000;
+}
+
+.header .title {
+    margin-right: 1em;
+}
+
+.header {
+    border-bottom: 1px solid #aaa;
+    width: 100%;
+    margin-bottom: 1em;
 }
 
 .meta {

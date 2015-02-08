@@ -1,7 +1,7 @@
 ---
 layout: post
 title: select - RxJS
-categories: rx,rxoperators
+categories: rx
 date: 2014-06-10 10:35:01
 image: rx128.png
 ---

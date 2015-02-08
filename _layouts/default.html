@@ -25,7 +25,9 @@
     <body>
         <div class="site">
           <div class="header">
-            <h1 class="title"><a href="/">RxJS</a></h1>
+              {% for cat in site.data.categories %}
+              <h1 class="title"><a href="{{ cat.url }}">{{ cat.title }}</a></h1>
+              {% endfor %}
           </div>
 
           {{ content }}
@@ -40,8 +42,8 @@
             </div>
             <div class="contact">
               <p>
-                <a href="https://github.com/primeagen">github.com/primeagen</a><br />
-                <a href="https://twitter.com/@primeagen">twitter.com/@primeagen</a><br />
+                <a href="https://github.com/michaelbpaulson">github.com/michaelbpaulson</a><br />
+                <a href="https://twitter.com/@_michaelpaulson">twitter.com/@_michaelpaulson</a><br />
               </p>
             </div>
           </div>
