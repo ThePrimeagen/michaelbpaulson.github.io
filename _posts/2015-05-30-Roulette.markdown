@@ -5,7 +5,6 @@ category: stats,random
 permalink: /random/roulette
 ---
 ### Stop playing Roulette
-##### You don't win, ever...
 I recently watched the Gambler with Marky Mark and it got me thinking
 about Roulette.  Is it possible to win?  What are my odds if I decide
 to play Roulette?
