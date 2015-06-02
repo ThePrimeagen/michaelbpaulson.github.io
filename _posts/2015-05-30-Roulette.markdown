@@ -1,0 +1,226 @@
+---
+layout: post
+title: Roulette
+category: stats,random
+permalink: /random/roulette
+---
+### Stop playing Roulette
+##### You don't win, ever...
+I recently watched the Gambler with Marky Mark and it got me thinking
+about Roulette.  Is it possible to win?  What are my odds if I decide
+to play Roulette?
+
+#### The Game
+The game of Roulette (at least the ones you will find in American Casinos)
+have 38 potential values.  Of those 38 values, 18 are red and 18 are black.
+The remaining 2, 0 and 00, are colored green.  There are several bets, each
+with different payouts.  For the sake of brevity, I am only going to focus
+on red or black bets.  Betting on red or black is a 2x payout if correct.  The
+odds of red or black is 18:38, which is 47.3%.
+
+#### The Experiment
+I wanted to test the most logical (but actually illogical) way to win, at
+least to me.  This would be, if the table has had 3 reds in a row I am going
+to bet on black, and vice versa.  Then for bonus I wanted to do a double down
+strategy if an incorrect bet was made.
+
+#### The Results
+The code keeps playing until one of two conditions are met, I am out
+of money, or I have exceeded my max (walkaway).  When running the different
+tests it should be noted that I did actually get to my max a few times on
+the double down sequence betting.  The rest I always ended at 0.  The only
+thing that changed were how many games had to be played to acheive my defeat.
+
+#### The Code
+Lets define some simple helper variables.  First `REDS` and `BLACKS` are defined
+as follows:
+
+```javascript
+var REDS = {
+    1: true,
+    3: true,
+    5: true,
+    7: true,
+    9: true,
+    12: true,
+    14: true,
+    16: true,
+    18: true,
+    19: true,
+    21: true,
+    23: true,
+    25: true,
+    27: true,
+    30: true,
+    32: true,
+    34: true,
+    36: true
+};
+
+var BLACKS = {
+    2: true,
+    4: true,
+    6: true,
+    8: true,
+    10: true,
+    11: true,
+    13: true,
+    15: true,
+    17: true,
+    20: true,
+    22: true,
+    24: true,
+    26: true,
+    28: true,
+    29: true,
+    31: true,
+    33: true,
+    35: true
+};
+```
+
+A couple of helper functions are needed.  Spinning the wheel, `spin`, and
+the tracker that will track the current sequence of colors
+
+```javascript
+function spin() {
+    return Math.floor(Math.random() * 38);
+}
+
+var RED = 'red';
+var BLACK = 'black';
+var HOUSE = 'green';
+function getColor(number) {
+    if (BLACKS[number]) {
+        return BLACK;
+    }
+    if (REDS[number]) {
+        return RED;
+    }
+    return HOUSE;
+}
+
+function rouletteTracker() {
+    var count = BLACK, color = 0;
+
+    // Keeps track of the roulette board
+    return function() {
+        var results = spin();
+        var rColor = getColor(results);
+
+        if (color === rColor) {
+            count++;
+        }
+
+        else {
+            count = 1;
+            color = rColor;
+        }
+
+        return {
+            count: count,
+            color: color
+        };
+    };
+}
+```
+
+finally its time for the actual betting!  This will play until you have no
+cash or you cash exceeds the max passed in.
+
+```javascript
+function doTheBetting(opts) {
+    var bettingAmount = opts.bettingAmount;
+    var cash = opts.cash;
+    var inARow = opts.inARow;
+    var max = opts.max;
+    var counter = 0;
+    var refresh = opts.refresh;
+    var tracker = rouletteTracker();
+
+    for (;cash > 0 && cash < max; ++counter) {
+        var res = tracker();
+
+        // Essentially we only play 1 in a row if it equals the inARow marker.
+        // technically there is a doubling down strategy we could apply, but we wont.
+        if (res.count >= inARow) {
+            var color = res.color;
+            var betAmount = bettingAmount(cash, res);
+            var betColor = color === BLACK ? RED : BLACK;
+            var nextRes = tracker();
+            cash -= betAmount;
+
+            console.log('making bet', cash, betAmount, nextRes.color, betColor);
+            if (nextRes.color === betColor) {
+                cash += betAmount * 2;
+            }
+
+            if (refresh) {
+                tracker = rouletteTracker();
+            }
+        }
+    }
+
+    console.log('Stats:');
+    console.log('After', counter, 'games you have', cash, 'left.');
+}
+```
+
+Lets try some betting!  Here are the three bets I defined above.
+First, the simple bet of 50 at a time.  Upon every lose restart
+the sequence tracker.
+
+```javascript
+doTheBetting({
+    bettingAmount: function(cash, res) {
+        if (cash < 50) {
+            return cash;
+        }
+        return 50;
+    },
+    max: 2000,
+    inARow: 5,
+    cash: 500,
+    refresh: true
+});
+```
+
+Second, lets bet on a sequence, and if we miss our first bet, keep
+betting until we win or green.
+
+```javascript
+doTheBetting({
+    bettingAmount: function(cash, res) {
+        if (cash < 50) {
+            return cash;
+        }
+        return 50;
+    },
+    max: 2000,
+    inARow: 5,
+    cash: 500,
+    refresh: true
+});
+```
+
+Third, same as above, expect lets go exponential on each bet.
+
+```javascript
+doTheBetting({
+    bettingAmount: function(cash, res) {
+        if (cash < 50) {
+            return cash;
+        }
+        var calc = Math.pow(2, res.count - 3) * 50;
+        return calc > cash ? cash : calc;
+    },
+    max: 2000,
+    inARow: 5,
+    cash: 500,
+    refresh: false
+});
+```
+
+After running these different betting schemes it became clear.  You
+always lose at roulette, no matter how _clever_ you are.
+
