@@ -33,8 +33,7 @@ thing that changed were how many games had to be played to acheive my defeat.
 #### The Code
 Lets define some simple helper variables.  First `REDS` and `BLACKS` are defined
 as follows:
-
-```javascript
+{% highlight javascript %}
 var REDS = {
     1: true,
     3: true,
@@ -76,12 +75,13 @@ var BLACKS = {
     33: true,
     35: true
 };
-```
+{% endhighlight %}
 
 A couple of helper functions are needed.  Spinning the wheel, `spin`, and
 the tracker that will track the current sequence of colors
 
-```javascript
+
+{% highlight javascript %}
 function spin() {
     return Math.floor(Math.random() * 38);
 }
@@ -98,6 +98,7 @@ function getColor(number) {
     }
     return HOUSE;
 }
+
 
 function rouletteTracker() {
     var count = BLACK, color = 0;
@@ -122,12 +123,12 @@ function rouletteTracker() {
         };
     };
 }
-```
+{% endhighlight %}
 
 finally its time for the actual betting!  This will play until you have no
 cash or you cash exceeds the max passed in.
 
-```javascript
+{% highlight javascript %}
 function doTheBetting(opts) {
     var bettingAmount = opts.bettingAmount;
     var cash = opts.cash;
@@ -163,13 +164,13 @@ function doTheBetting(opts) {
     console.log('Stats:');
     console.log('After', counter, 'games you have', cash, 'left.');
 }
-```
+{% endhighlight %}
 
 Lets try some betting!  Here are the three bets I defined above.
 First, the simple bet of 50 at a time.  Upon every lose restart
 the sequence tracker.
 
-```javascript
+{% highlight javascript %}
 doTheBetting({
     bettingAmount: function(cash, res) {
         if (cash < 50) {
@@ -182,12 +183,12 @@ doTheBetting({
     cash: 500,
     refresh: true
 });
-```
+{% endhighlight %}
 
 Second, lets bet on a sequence, and if we miss our first bet, keep
 betting until we win or green.
 
-```javascript
+{% highlight javascript %}
 doTheBetting({
     bettingAmount: function(cash, res) {
         if (cash < 50) {
@@ -200,11 +201,11 @@ doTheBetting({
     cash: 500,
     refresh: true
 });
-```
+{% endhighlight %}
 
 Third, same as above, expect lets go exponential on each bet.
 
-```javascript
+{% highlight javascript %}
 doTheBetting({
     bettingAmount: function(cash, res) {
         if (cash < 50) {
@@ -218,7 +219,7 @@ doTheBetting({
     cash: 500,
     refresh: false
 });
-```
+{% endhighlight %}
 
 After running these different betting schemes it became clear.  You
 always lose at roulette, no matter how _clever_ you are.
