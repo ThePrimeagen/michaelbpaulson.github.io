@@ -1,0 +1,23 @@
+{
+  "name": "github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelbpaulson/michaelbpaulson.github.io.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelbpaulson/michaelbpaulson.github.io/issues"
+  },
+  "homepage": "https://github.com/michaelbpaulson/michaelbpaulson.github.io#readme",
+  "dependencies": {
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5"
+  }
+}
