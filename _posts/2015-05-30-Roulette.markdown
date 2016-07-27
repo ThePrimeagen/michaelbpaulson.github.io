@@ -40,7 +40,7 @@ var REDS = {
     5: true,
     7: true,
     9: true,
-    12: true, =
+    12: true,
     14: true,
     16: true,
     18: true,
@@ -223,4 +223,3 @@ doTheBetting({
 
 After running these different betting schemes it became clear.  You
 always lose at roulette, no matter how _clever_ you are.
-
