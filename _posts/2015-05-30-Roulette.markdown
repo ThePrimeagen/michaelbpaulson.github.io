@@ -101,7 +101,7 @@ function getColor(number) {
 
 
 function rouletteTracker() {
-    var count = BLACK, color = 0;
+    var count = 0, color = BLACK;
 
     // Keeps track of the roulette board
     return function() {
