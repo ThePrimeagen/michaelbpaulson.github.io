@@ -7,7 +7,7 @@ permalink: /flatbuffers/intro
 
 ## Flatbuffers --- Why?
 
-I started web development in 2010.  Yeah, I know, I started when times were easy.  The days of IE8+, jQuery was all the rage, and PHP was hotter than a pistol.  During my time developing I questioned so many of the practices: "Why am I using PHP?", "Who uses IE7?", and "Why is jQuery so awesome?".  But one thing that never crossed my mind is "why JSON?"  JSON was ubiquitous and human readable.  In fact, I had my first white paper accept during my time in academia about [JSON](http://www.cs.montana.edu/izurieta/pubs/IzurietaCAINE2009.pdf).  Yeah, the paper sucked, but none the less, JSON was awesome!  So for the rest of my career, up until this year, I have never considered anything but the all mighty JSON.  But then it happened... my friend, [Guy](https://github.com/michaelbpaulson/following)\*, explained to me why he does not JSON.  Of course my natural reaction was...
+I started web development in 2010.  Yeah, I know, I started when times were easy.  The days of IE8+, jQuery was all the rage, and PHP was hotter than a pistol.  During my time developing I questioned so many of the practices: "Why am I using PHP?", "Who uses IE7?", and "Why is jQuery so awesome?".  But one thing that never crossed my mind is "why JSON?"  JSON is ubiquitous and human readable.  In fact, I had my first and only white paper during my time in academia is about [JSON](http://www.cs.montana.edu/izurieta/pubs/IzurietaCAINE2009.pdf).  Yeah, the paper sucked, but none the less, JSON is awesome!  So for the rest of my career, up until this year, I have never considered anything but the all mighty JSON.  But then it happened... my friend, [Guy](https://github.com/michaelbpaulson/following)\* \*\*, explained to me why he does not JSON (yes, the verb form of JSON).  Of course my natural reaction was...
 
 > "Are you suggesting XML?" - Me  
 > "XML?" - Guy
@@ -16,17 +16,17 @@ After a 15 second conversation about real life, you know, adult things, I quickl
 
 This is the motivation for explaining what [Flatbuffers](https://github.com/google/flatbuffers) are and why they are amazingly cool.  So this will be a series of articles that rely as much as possible on data, and little as possible on feelings.  You know, practical science shit.
 
-### Before you flatbuffer
+### Let us JSON
 
-Before you flatbuffer it is best you understand JSON and how its parsed and sent over the wire.  The following is from [JSON.org](http://www.json.org).
+The following is from [JSON.org](http://www.json.org).
 
 > **JSON** (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate. It is based on a subset of the JavaScript Programming Language, Standard ECMA-262 3rd Edition - December 1999. JSON is a text format that is completely language independent but uses conventions that are familiar to programmers of the C-family of languages, including C, C++, C#, Java, JavaScript, Perl, Python, and many others. These properties make JSON an ideal data-interchange language.
 
-This series of articles is me disagreeing with the above statement.  Well, not the whole statement, really just the last part.
+This series of articles is me disagreeing with the above statement.  Well, not the whole statement, just the last part.
 
 > These properties make JSON an ideal data-interchange language.
 
-This first article is meant to introduce flatbuffers, what they are, and the high level algorithm used.  From there I'll be making a set of comparisons of there runtime.  All experiments will be done in node.
+This article is meant to introduce flatbuffers, what they are, and the high level view of the algorithm used.  From there I'll be making a set of comparisons of their runtime.  All experiments will be done in node.
 
 #### Why JSON?
 
@@ -40,11 +40,11 @@ const video = {
 };
 {% endhighlight %}
 
-The above code is a Javascript variable named `video`.  To make this into valid json, the following function is applied `const json = JSON.stringify(video)`.  That string is valid JSON!  Then the binary contents of the string are sent across the wire to a receiver where the json is converted from bytes on the wire to a Javascript string to a tree (Javascript Object).
+The above code is a Javascript variable named `video`.  To make this into valid json, the following function is applied `const json = JSON.stringify(video)`.  The string produced is valid JSON!  Then the binary contents of the string are sent across the wire to a receiver where the json is converted from bytes on the wire to a Javascript string to a POJO (Plain Ol' Javascript Object).
 
 ### Intro to flatbuffers
 
-At this point you are probably thinking "why are we talking about JSON"?  To understand why flatbuffers are so awesome you first must understand what happens when working with JSON.  To recap...  
+To understand why flatbuffers are so awesome you first must understand what happens when working with JSON.  So to recap...  
 
 * Some object structure has to be converted from a class or map into a string.
 * When receiving json, that string needs to be converted back into an object.
@@ -83,22 +83,22 @@ Video.prototype = {
 };
 {% endhighlight %}
 
-The video array can now be understood through an interface.  Now lets expand this example.  So for me to get out the rating of video I would do the following.  
+The video array can now be understood through an interface.  To get out the rating of a video I would do the following.  
 
 {% highlight javascript %}
-
 getDataFromSource(function cb(data) {
     const video = new Video(data);
     console.log('Here is my title', video.title());
 });
-
 {% endhighlight %}
 
-Let us expand our example from a single array representing a single video to a single array representing `N` videos. How would this change our interface?  Lets rewrite the interface to consider the array is filled with many movies.
+Let us expand our example from a single array representing a single video to a single array representing `N` videos. How would this change our interface?  Lets rewrite the interface to consider the array is filled with many videos.
 
 {% highlight javascript %}
 const Video = function Video(data, offset) {
     this.data = data;
+
+    // The offset of into the array where the video starts.
     this.offset = offset;
 };
 
@@ -119,10 +119,11 @@ Video.prototype = {
 
 The offset is required to know where in the array buffer to start from.  From there it is simple addition to get to the values.
 
-So now you have the idea.  Arrays.  But instead of arrays think `Uint8Array` or contiguous memory blocks.  In the end, what makes flatbuffers so powerful is the ability to point to memory and say you are a `Video`.  There is no need to parse the entire block to read a single field.  This becomes increasingly more powerful with larger payloads.
+So now you have the idea.  Arrays.  But instead of arrays think `Uint8Array` or a contiguous memory blocks.  In the end, what makes flatbuffers so powerful is the ability to point to memory and say you are a `Video`.  There is no need to parse the entire block to read a single field.  This becomes increasingly more powerful with larger payloads.
 
 ### Conclusion
 
 In the end I hope that I have convinced you to at least check out flatbuffers.  Even if its just for fun.  There is a world where JSON is off.  And its a really performant world.
 
-\* - Guy:  I had no idea I was following him on github.  But then I realized he is the only person I follow.  I think I'll keep that for the foreseeable future.
+\* - Guy: He is pretty neet and he has strong opinions.
+\*\* - A shout out to the Honey Badgers.  [Alex](https://www.linkedin.com/in/alexander-wolfe-4ab2516b);
