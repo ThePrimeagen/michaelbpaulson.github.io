@@ -125,5 +125,5 @@ So now you have the idea.  Arrays.  But instead of arrays think `Uint8Array` or 
 
 In the end I hope that I have convinced you to at least check out flatbuffers.  Even if its just for fun.  There is a world where JSON is off.  And its a really performant world.
 
-\* - Guy: He is pretty neet and he has strong opinions.
+\* - Guy: He is pretty neet and he has strong opinions.  
 \*\* - A shout out to the Honey Badgers.  [Alex](https://www.linkedin.com/in/alexander-wolfe-4ab2516b);
