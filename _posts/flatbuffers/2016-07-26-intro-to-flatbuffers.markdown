@@ -121,9 +121,24 @@ The offset is required to know where in the array buffer to start from.  From th
 
 So now you have the idea.  Arrays.  But instead of arrays think `Uint8Array` or a contiguous memory blocks.  In the end, what makes flatbuffers so powerful is the ability to point to memory and say you are a `Video`.  There is no need to parse the entire block to read a single field.  This becomes increasingly more powerful with larger payloads.
 
-### Conclusion
+### Where we are going next
 
-In the end I hope that I have convinced you to at least check out flatbuffers.  Even if its just for fun.  There is a world where JSON is off.  And its a really performant world.
+This is just the introduction to Flatbuffers, and I have plenty more to say.  The outline for this series of blogs will be the following:
+
+* How to work with flatbuffers.
+* Cost of JSON serialization vs Flatbuffers
+* Server Side rendering and Flatbuffers.
+
+In the end I hope to rate flatbuffers vs json on 3 points:
+
+* Usability - The ease of use of construction and working of flat binary structs.
+* Debuggability - How is debugging issues when it comes to flatbuffers?
+* Performance - Both CPU and Memory performance.
+
+Hopefully by the end I can make you a believer in FlatBuffers.
+
+## Next Article
+[How to FlatBuffers](/flatbuffers/how-to-flatbuffers)
 
 \* - Guy: He is pretty neet and he has strong opinions.  
 \*\* - A shout out to the Honey Badgers.  [Alex](https://www.linkedin.com/in/alexander-wolfe-4ab2516b);
