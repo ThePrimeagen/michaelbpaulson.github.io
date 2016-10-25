@@ -13,7 +13,7 @@ In the [previous article](/flatbuffers/intro) we discussed the basics of the fla
 
 Lets build Netflix!  All of the code I'll be building here are found in my [flatbuffers-benchmarks](https://github.com/michaelbpaulson/flatbuffers-benchmarks) repo.  I have only included a small portion of the code found in my aforementioned repo for readability sake.  For more examples of schema's and usage check out the test directory of [Google FlatBuffers](https://github.com/google/flatbuffers).
 
-It is simple to think of Netflix as a (L)ist (O)f (L)ist (O)f (M)ovie (O)bjects, `Lolomo`.  I know, I know, Netflix is not comprised of only movies, but this acronym, Lolomo, has been around for quite some time, long enough where this was true.  So lets build the Lolomo structure.  A `Lolomo` will contain an `id`, which is a `string`, and a list of `Row`s.  `Row`s will contain a `title`, `id`, and a list of videos.  `Video`s contain a set of fields such as title, rating, maturity, runningTime, yearCreated, etc. etc.  `Video` is where most of the code was abbreviated.
+With Netflix domain model is a (L)ist (O)f (L)ist (O)f (M)ovie (O)bjects, `Lolomo`.  I know, I know, Netflix is not comprised of only movies, but this acronym, Lolomo, has been around for quite some time, long enough where this was true.  So lets build the Lolomo structure.  A `Lolomo` will contain an `id`, which is a `string`, and a list of `Row`s.  `Row`s will contain a `title`, `id`, and a list of videos.  `Video`s contain a set of fields such as title, rating, maturity, runningTime, yearCreated, etc. etc.  `Video` is where most of the code was abbreviated.
 
 
 {% highlight bash %}
