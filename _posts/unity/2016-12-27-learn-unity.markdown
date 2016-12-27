@@ -12,14 +12,17 @@ in a game called [Graal Online](http://classic.graalonline.com/), of which
 has a large following (WAH??). There was a simple level editor of which I
 spent hours playing around with. The level editor had a simple script
 editor with C like syntax. That is where I discovered my love for
-programming and games. I hope, on this adventure, to rediscover them. So I
-am learning Unity and hopefully will make some neeto VR games. I kept
-programming all the way through college. Granted I rarely wrote anything
-passed concept, hand wrote physic engines, game engines, and eventually
-scope creeped to the point of never completing anything. But now, I want to
-revive that passion and see what the world of game programming looks like
-now. So I decided to learn Unity3d. I no longer have to worry about all the
-details, I can just focus on programming, and the unity way of doing things.
+programming and games. I hope, on this adventure, to rediscover them.
+
+So I am learning Unity and hopefully will make some neeto VR games.
+
+I kept game programming all the way through college. Granted I rarely wrote
+anything passed concept, hand wrote physic engines, game engines, and
+eventually scope creeped to the point of never completing anything. But now,
+I want to revive that passion and see what the world of game programming
+looks like now. So I decided to learn Unity3d. I no longer have to worry
+about all the details, I can just focus on programming, and the unity way of
+doing things.
 
 ## Unity?
 Yes Unity.
