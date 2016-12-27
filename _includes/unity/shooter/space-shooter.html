@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/assets/unity/shooter/TemplateData/style.css">
+<link rel="stylesheet" href="/assets/unity/shooter/template.css">
+<link rel="shortcut icon" href="/assets/unity/shooter/TemplateData/favicon.ico" />
+<script src="/assets/unity/shooter/TemplateData/UnityProgress.js"></script>
+<div class="template">
+  <div class="template-wrap clear">
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="900px" width="600px"></canvas>
+    <br>
+    <div class="logo"></div>
+    <div class="fullscreen"><img src="/assets/unity/shooter/TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" /></div>
+    <div class="title">SpaceShooter</div>
+  </div>
+  <script type='text/javascript'>
+    var Module = {
+    TOTAL_MEMORY: 268435456,
+    errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+    compatibilitycheck: null,
+    backgroundColor: "#222C36",
+    splashStyle: "Light",
+    dataUrl: "/assets/unity/shooter/Release/shooter_gl.data",
+    codeUrl: "/assets/unity/shooter/Release/shooter_gl.js",
+    asmUrl: "/assets/unity/shooter/Release/shooter_gl.asm.js",
+    memUrl: "/assets/unity/shooter/Release/shooter_gl.mem",
+    };
+  </script>
+  <script src="/assets/unity/shooter/Release/UnityLoader.js"></script>
+</div>

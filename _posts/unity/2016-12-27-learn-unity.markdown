@@ -58,3 +58,6 @@ explode.
 I will not be going over any of the code for that, but as I progress,
 hopefully, I'll make a few posts about cool tips and tricks I have found
 for Game Programming and VR related gems.
+
+### The Game
+{% include unity/shooter/space-shooter.html %}
