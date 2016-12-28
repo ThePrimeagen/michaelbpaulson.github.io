@@ -149,9 +149,6 @@ public class XBoxOneController : MonoBehaviour {
 		rightTrigger = Input.GetAxis("RightTrigger");
 		leftTrigger = Input.GetAxis("LeftTrigger");
 
-		#if UNITY_STANDALONE_OSX
-		// Mac OSX has a weird trigger issue where right trigger initializes to 0,
-		// not -1.
 		if (!rTriggerUsed) {
 			if (rightTrigger != 0) {
 				rTriggerUsed = true;
@@ -166,7 +163,6 @@ public class XBoxOneController : MonoBehaviour {
 				leftTrigger = -1;
 			}
 		}
-		#endif
 
 		// right and left triggers tend to have a value of -1 after their first use.
 		// I think it is better to normalize.
@@ -192,3 +188,7 @@ public class XBoxOneController : MonoBehaviour {
 ### Demo
 Here is a simple demo app that will use the xbox controller values to color
 a black piece of material. There are no buttons considered here.
+
+
+ *Warning, this seems to work on desktop, but website seems to be goofed for
+ the moment.*
