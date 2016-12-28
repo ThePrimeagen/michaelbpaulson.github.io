@@ -1,8 +1,9 @@
 ---
-layout: post
+layout: post-with-demo
 title: Rediscovering My Original Goal of Learning to Program.
 category: game-programming
 permalink: /game-programming/my-first-game
+demoFolder: /assets/unity/shooter
 ---
 
 ## My Original Desire to Learn Programming.
@@ -60,4 +61,3 @@ hopefully, I'll make a few posts about cool tips and tricks I have found
 for Game Programming and VR related gems.
 
 ### The Game
-{% include unity/shooter/space-shooter.html %}

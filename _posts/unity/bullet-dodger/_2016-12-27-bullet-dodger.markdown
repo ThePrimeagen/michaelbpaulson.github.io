@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Bullet Dodger Part 1
+title: Bullet Dodger - Intro
 category: game-programming
 permalink: /game-programming/bullet-dodger-1
 ---
@@ -14,3 +14,10 @@ permalink: /game-programming/bullet-dodger-1
 
  * FPS style bullet dodger
   * I will diverge a bit from the standard bullet dodger with
+
+
+### My Hopes
+I hope to complete this over the course of the span of 10 to 20 hours with
+unity. I figured this is a somewhat unrealistic goal, but that has never
+stopped me from trying.
+
