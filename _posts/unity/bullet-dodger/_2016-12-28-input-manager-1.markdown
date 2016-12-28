@@ -13,7 +13,8 @@ Here is a set of useful links I have found while developing the xbox controller 
 
 * [Mac OSX Driver](https://github.com/360Controller/360Controller/releases)
  * I am using version 0.16.4
-*
+* [Stick Setup](http://answers.unity3d.com/questions/1119529/c-get-xbox-one-controller-analog-sticks-triggers-a.html)
+* [Trigger Setup](http://answers.unity3d.com/questions/914032/xbox-controller-triggers-for-input-mangaer.html)
 
 #### Wait, My Right Joystick does not work.
 Yes, it does not, but it is easy to make the joystick work with the Input Manager.

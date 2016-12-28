@@ -3,7 +3,11 @@ layout: post-with-demo
 title: XBox One Controller Setup
 category: game-programming-tips
 permalink: /game-programming-tips/xbox-controller-setup
-demoFolder: /assets/unity/bullet-dodger/_demo/xbox-controller
+demoFolder: /assets/unity/bullet-dodger/demo/xbox-controller
+demoName: XBoxController
+demoWidth: 320
+demoHeight: 180
+demoTile: XBox Controller
 ---
 
 ### XBox Controller Setup.

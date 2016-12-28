@@ -4,6 +4,10 @@ title: Rediscovering My Original Goal of Learning to Program.
 category: game-programming
 permalink: /game-programming/my-first-game
 demoFolder: /assets/unity/shooter
+demoName: shooter_gl
+demoWidth: 600
+demoHeight: 900
+demoTile: Space Shooter
 ---
 
 ## My Original Desire to Learn Programming.
