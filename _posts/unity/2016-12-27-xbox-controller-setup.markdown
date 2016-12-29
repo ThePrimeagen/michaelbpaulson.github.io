@@ -116,7 +116,9 @@ Fire1 would not work (currently).
 #### XBoxController.cs
 The code for the xbox controller is rather simple. Every Update I check the
 values of those virtual axes and update the public properties of my
-controller.
+controller. Pay particular attention to the precompiler `#if` statement.
+This allows us to program specific logic for WebGL, which acts differently
+than Mac OSX Stand alone.
 
 {% highlight csharp %}
 using UnityEngine;
@@ -130,15 +132,18 @@ public class XBoxOneController : MonoBehaviour {
 	public float rightTrigger { get; private set; }
 	public float leftTrigger { get; private set; }
 
-	public bool debug;
 	private bool rTriggerUsed;
 	private bool lTriggerUsed;
 
+	private DebugController debug;
+
 	void Start() {
+
 		// Debugging must be manually turned on by the unity editor.
-		debug = false;
 		rTriggerUsed = false;
 		lTriggerUsed = false;
+
+		debug = DebugController.GetController();
 	}
 
 	void Update () {
@@ -149,6 +154,11 @@ public class XBoxOneController : MonoBehaviour {
 		rightTrigger = Input.GetAxis("RightTrigger");
 		leftTrigger = Input.GetAxis("LeftTrigger");
 
+		#if UNITY_WEBGL
+		_WebGL();
+		#endif
+
+		// Trigger start values have been a bit odd
 		if (!rTriggerUsed) {
 			if (rightTrigger != 0) {
 				rTriggerUsed = true;
@@ -169,18 +179,30 @@ public class XBoxOneController : MonoBehaviour {
 		rightTrigger = (rightTrigger + 1) / 2;
 		leftTrigger = (leftTrigger + 1) / 2;
 
-		if (debug) {
-			Log("Horizontal", horizontal);
-			Log("Vertical", vertical);
-			Log("HorizontalTurn", horizontalTurn);
-			Log("VerticalTurn", verticalTurn);
-			Log("RightTrigger", rightTrigger);
-			Log("LeftTrigger", leftTrigger);
+		if (debug.debug) {
+			Log("Horizontal", horizontal, "Vertical", vertical,
+			    "HorizontalTurn", horizontalTurn, "VerticalTurn", verticalTurn,
+				"RightTrigger", rightTrigger, "LeftTrigger", leftTrigger);
 		}
 	}
 
-	void Log(string name, float v) {
-		Debug.Log(name + " " + v);
+	void Log(params object[] vals) {
+		string str = "";
+		for (int i = 0; i < vals.Length; i += 2) {
+			str += vals[i] + " = " + vals[i + 1] + "\n";
+		}
+
+		Debug.Log(str);
+	}
+
+	private void _WebGL() {
+		float hTurn = horizontalTurn;
+		float vTurn = verticalTurn;
+		float lTrigger = leftTrigger;
+
+		horizontalTurn = vTurn;
+		leftTrigger = hTurn;
+		verticalTurn = lTrigger;
 	}
 }
 {% endhighlight %}
@@ -188,7 +210,3 @@ public class XBoxOneController : MonoBehaviour {
 ### Demo
 Here is a simple demo app that will use the xbox controller values to color
 a black piece of material. There are no buttons considered here.
-
-
- *Warning, this seems to work on desktop, but website seems to be goofed for
- the moment.*
